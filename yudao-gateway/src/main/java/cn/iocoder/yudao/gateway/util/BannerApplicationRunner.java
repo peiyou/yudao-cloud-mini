@@ -19,7 +19,7 @@ public class BannerApplicationRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        ThreadUtil.execute(() -> {
+        /*ThreadUtil.execute(() -> {
             ThreadUtil.sleep(1, TimeUnit.SECONDS); // 延迟 1 秒，保证输出到结尾
             log.info("\n----------------------------------------------------------\n\t" +
                             "项目启动成功！\n\t" +
@@ -45,7 +45,7 @@ public class BannerApplicationRunner implements ApplicationRunner {
             System.out.println("[微信公众号 yudao-module-mp 教程][参考 https://cloud.iocoder.cn/mp/build/ 开启]");
             // 支付平台
             System.out.println("[支付系统 yudao-module-pay - 教程][参考 https://doc.iocoder.cn/pay/build/ 开启]");
-        });
+        });*/
     }
 
 }

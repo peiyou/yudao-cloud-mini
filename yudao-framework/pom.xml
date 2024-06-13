@@ -18,7 +18,7 @@
         <module>yudao-spring-boot-starter-security</module>
         <module>yudao-spring-boot-starter-websocket</module>
 
-        <module>yudao-spring-boot-starter-monitor</module>
+<!--        <module>yudao-spring-boot-starter-monitor</module>-->
         <module>yudao-spring-boot-starter-protection</module>
 <!--        <module>yudao-spring-boot-starter-config</module>-->
         <module>yudao-spring-boot-starter-job</module>

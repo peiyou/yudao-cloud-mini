@@ -40,7 +40,7 @@ spring:
       primary: master
       datasource:
         master:
-          url: jdbc:mysql://127.0.0.1:3306/ruoyi-vue-pro?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true # MySQL Connector/J 8.X 连接的示例
+          url: jdbc:mysql://127.0.0.1:3306/distribution-system?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true # MySQL Connector/J 8.X 连接的示例
           #          url: jdbc:mysql://127.0.0.1:3306/ruoyi-vue-pro?useSSL=true&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai # MySQL Connector/J 5.X 连接的示例
           #          url: jdbc:postgresql://127.0.0.1:5432/ruoyi-vue-pro # PostgreSQL 连接的示例
           #          url: jdbc:oracle:thin:@127.0.0.1:1521:xe # Oracle 连接的示例
@@ -52,11 +52,11 @@ spring:
         #          password: JSm:g(*%lU4ZAkz06cd52KqT3)i1?H7W # SQL Server 连接的示例
         #          username: SYSDBA # DM 连接的示例
         #          password: SYSDBA # DM 连接的示例
-        slave: # 模拟从库，可根据自己需要修改
-          lazy: true # 开启懒加载，保证启动速度
-          url: jdbc:mysql://127.0.0.1:3306/ruoyi-vue-pro?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
-          username: root
-          password: 123456
+#        slave: # 模拟从库，可根据自己需要修改
+#          lazy: true # 开启懒加载，保证启动速度
+#          url: jdbc:mysql://127.0.0.1:3306/distribution-system?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true
+#          username: root
+#          password: 123456
 
   # Redis 配置。Redisson 默认的配置足够使用，一般不需要进行调优
   redis:
@@ -67,10 +67,6 @@ spring:
 
 --- #################### MQ 消息队列相关配置 ####################
 
-# rocketmq 配置项，对应 RocketMQProperties 配置类
-rocketmq:
-  name-server: 127.0.0.1:9876 # RocketMQ Namesrv
-
 spring:
   # RabbitMQ 配置项，对应 RabbitProperties 配置类
   rabbitmq:
@@ -78,9 +74,6 @@ spring:
     port: 5672 # RabbitMQ 服务的端口
     username: guest # RabbitMQ 服务的账号
     password: guest # RabbitMQ 服务的密码
-  # Kafka 配置项，对应 KafkaProperties 配置类
-  kafka:
-    bootstrap-servers: 127.0.0.1:9092 # 指定 Kafka Broker 地址，可以设置多个，以逗号分隔
 
 --- #################### 定时任务相关配置 ####################
 
@@ -150,52 +143,7 @@ wx:
       key-prefix: wa # Redis Key 的前缀
       http-client-type: HttpClient # 采用 HttpClient 请求微信公众号平台
 
---- #################### 芋道相关配置 ####################
 
-# 芋道配置项，设置当前项目所有自定义的配置
 yudao:
-  env: # 多环境的配置项
-    tag: ${HOSTNAME}
   captcha:
-    enable: false # 本地环境，暂时关闭图片验证码，方便登录等接口的测试
-  security:
-    mock-enable: true
-  xss:
-    enable: false
-    exclude-urls: # 如下两个 url，仅仅是为了演示，去掉配置也没关系
-      - ${spring.boot.admin.context-path}/** # 不处理 Spring Boot Admin 的请求
-      - ${management.endpoints.web.base-path}/** # 不处理 Actuator 的请求
-  pay:
-    pay-notify-url: http://niubi.natapp1.cc/api/pay/order/notify
-    pay-return-url: http://niubi.natapp1.cc/api/pay/order/return
-    refund-notify-url: http://niubi.natapp1.cc/api/pay/refund/notify
-  access-log: # 访问日志的配置项
-    enable: false
-  demo: false # 关闭演示模式
-
-justauth:
-  enabled: true
-  type:
-    DINGTALK: # 钉钉
-      client-id: dingvrnreaje3yqvzhxg
-      client-secret: i8E6iZyDvZj51JIb0tYsYfVQYOks9Cq1lgryEjFRqC79P3iJcrxEwT6Qk2QvLrLI
-      ignore-check-redirect-uri: true
-    WECHAT_ENTERPRISE: # 企业微信
-      client-id: wwd411c69a39ad2e54
-      client-secret: 1wTb7hYxnpT2TUbIeHGXGo7T0odav1ic10mLdyyATOw
-      agent-id: 1000004
-      ignore-check-redirect-uri: true
-    # noinspection SpringBootApplicationYaml
-    WECHAT_MINI_APP: # 微信小程序
-      client-id: ${wx.miniapp.appid}
-      client-secret: ${wx.miniapp.secret}
-      ignore-check-redirect-uri: true
-      ignore-check-state: true # 微信小程序，不会使用到 state，所以不进行校验
-    WECHAT_MP: # 微信公众号
-      client-id: ${wx.mp.app-id}
-      client-secret: ${wx.mp.secret}
-      ignore-check-redirect-uri: true
-  cache:
-    type: REDIS
-    prefix: 'social_auth_state:' # 缓存前缀，目前只对 Redis 缓存生效，默认 JUSTAUTH::STATE::
-    timeout: 24h # 超时时长，目前只对 Redis 缓存生效，默认 3 分钟
+    enabled: true
